@@ -102,6 +102,23 @@ export class MenuComponent implements OnInit {
     });
   }
 
+  genereReporteExcel(tiporeporte: string){
 
+    let menu = new Menu();    
+    menu.bActivo= true;
+    menu.sNombreMenu="prueba menu";
+
+    this.menuService.genererExcel(tiporeporte).subscribe(data => {
+      const url = window.URL.createObjectURL(data);
+      const a = document.createElement('a');
+      a.setAttribute('style', 'display:none;')
+      a.href = url;
+      //a.target= '_blank|_self|_parent|_top|framename';
+      a.download =  'reporteExcel.'+tiporeporte;
+      a.click();
+    });
+ 
+
+  }
 
 }
