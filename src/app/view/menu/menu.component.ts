@@ -46,9 +46,9 @@ export class MenuComponent implements OnInit {
       this.cantidad = data.totalElements;
 
       this.dataSource = new MatTableDataSource(data.content);
-      //this.dataSource.paginator = this.paginator;
+      this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log('dataaaaaa menu');
+      // console.log('dataaaaaa menu');
       console.log(data.content);
 
     });
@@ -102,19 +102,14 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  genereReporteExcel(tiporeporte: string){
-
-    let menu = new Menu();    
-    menu.bActivo= true;
-    menu.sNombreMenu="prueba menu";
+  genereReporte(tiporeporte: string){
 
     this.menuService.genererExcel(tiporeporte).subscribe(data => {
       const url = window.URL.createObjectURL(data);
       const a = document.createElement('a');
       a.setAttribute('style', 'display:none;')
       a.href = url;
-      //a.target= '_blank|_self|_parent|_top|framename';
-      a.download =  'reporteExcel.'+tiporeporte;
+      a.download =  'reporte.'+tiporeporte;
       a.click();
     });
  

@@ -31,7 +31,6 @@ export class MenuService {
   }
 
   genererExcel(tiporeporte : string) {
-
     return this.http.post(`${this.url}/generarReporte`,tiporeporte, {
       responseType: 'blob'
     });
