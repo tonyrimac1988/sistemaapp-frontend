@@ -1,11 +1,11 @@
 export class Perfil {
 
-    nIdPerfil: number;
-    sNombrePerfil: string;
-    nSesionPorUsuario: number;
-    nTiempoConexionMinuto: number;
-    nTiempoVidaPaswordDia: number;
-    bActivo: boolean;
-    dFechaReg: Date;
-    nIdSesion: number
+    nidperfil: number;
+    snombreperfil: string;
+    nsesionesporusuario: number;
+    ntiempoconexionminuto: number;
+    ntiempovidapasworddia: number;
+    bactivo: boolean;
+    dfechareg: Date;
+    nidsesion: number
 }

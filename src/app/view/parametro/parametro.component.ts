@@ -1,48 +1,44 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Parametro } from 'src/app/_model/parametro';
 import { MatTableDataSource } from '@angular/material/table';
-import { Menu } from 'src/app/_model/menu';
-import { MenuService } from 'src/app/_service/menu.service';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { ParametroService } from 'src/app/_service/parametro.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  selector: 'app-parametro',
+  templateUrl: './parametro.component.html',
+  styleUrls: ['./parametro.component.css']
 })
-export class MenuComponent implements OnInit {
+export class ParametroComponent implements OnInit {
 
-
-    
   cantidad: number = 0;
-  dataSource: MatTableDataSource<Menu>;
+  dataSource: MatTableDataSource<Parametro>;
 
-  displayedColumns: string[] = ['nidmenu',  'modulo', 'snombremenu', 'acciones'];
+  displayedColumns: string[] = ['nidparametro',  'sclave', 'svalor', 'sdescripcion', 'dfechareg', 'acciones'];
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
-  
   constructor(
-    private menuService: MenuService,
+
+    private parametroService: ParametroService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
+
   ) { }
 
   ngOnInit(): void {
 
+    this.listarParametro();
     this.cargarVariablesReactiva();
-
-    this.listarMenu();
     
-
   }
 
+  listarParametro() {
 
-  listarMenu() {
-
-    this.menuService.listarMenu(0, 10).subscribe(data => {
+    this.parametroService.listarPageable(0, 10).subscribe(data => {
       this.cantidad = data.totalElements;
 
       this.dataSource = new MatTableDataSource(data.content);
@@ -53,36 +49,27 @@ export class MenuComponent implements OnInit {
 
     });
 
-    /*this.generoService.listar().subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    });*/
   }
 
-
-
   cargarVariablesReactiva() {
-    this.menuService.listaCambio.subscribe(data => {
+    this.parametroService.listaCambio.subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
 
-    this.menuService.mensajeCambio.subscribe(data => {
+    this.parametroService.mensajeCambio.subscribe(data => {
       this.snackBar.open(data, 'AVISO', {
         duration: 2000
       });
     });
   }
 
-
-
-  openDialog(menu?: Menu) {
+  openDialog(parametro?: Parametro) {
      
   }
 
-  eliminar(menu?: Menu) {
+  eliminar(parametro?: Parametro) {
      
   }
 
@@ -93,7 +80,7 @@ export class MenuComponent implements OnInit {
 
   mostrarMas(e: any) {
     //console.log(e);
-    this.menuService.listarMenu(e.pageIndex, e.pageSize).subscribe(data => {
+    this.parametroService.listarPageable(e.pageIndex, e.pageSize).subscribe(data => {
       this.cantidad = data.totalElements;
 
       this.dataSource = new MatTableDataSource(data.content);
@@ -104,7 +91,7 @@ export class MenuComponent implements OnInit {
 
   genereReporte(tiporeporte: string){
 
-    this.menuService.generarExcel(tiporeporte).subscribe(data => {
+    this.parametroService.generarExcel(tiporeporte).subscribe(data => {
       const url = window.URL.createObjectURL(data);
       const a = document.createElement('a');
       a.setAttribute('style', 'display:none;')
@@ -113,7 +100,5 @@ export class MenuComponent implements OnInit {
       a.click();
     });
  
-
   }
-
 }

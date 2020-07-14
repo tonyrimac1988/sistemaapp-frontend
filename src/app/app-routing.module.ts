@@ -1,3 +1,5 @@
+import { ParametroComponent } from './view/parametro/parametro.component'
+import { SedeComponent } from './view/sede/sede.component'
 import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { MenuComponent } from './view/menu/menu.component';
 import { PerfilComponent } from './view/perfil/perfil.component';
@@ -10,7 +12,9 @@ import { HomeComponent } from './view/home/home.component';
 
 const routes: Routes = [
   { path: 'reporte', component: DashboardComponent },  
-  { path: 'usuario', component: UsuariosComponent },  
+  { path: 'usuario', component: UsuariosComponent },
+  { path: 'sede', component: SedeComponent},
+  { path: 'parametro', component: ParametroComponent},  
   { path: 'perfil', component: PerfilComponent},
   { path: 'menu', component: MenuComponent},
   { path: 'home', component: HomeComponent },

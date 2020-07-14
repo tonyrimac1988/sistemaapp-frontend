@@ -12,6 +12,8 @@ export class AreaService {
   areaCambio = new Subject<Area[]>();
   mensajeCambio = new Subject<string>();
 
+  listaCambio = new Subject<Area[]>();
+
   url: string = `${environment.HOST}/areas`;
 
   constructor(private http : HttpClient) { }
@@ -38,6 +40,13 @@ export class AreaService {
 
   listarPageable(p: number, s: number) {
     return this.http.get<any>(`${this.url}/pageable?page=${p}&size=${s}`);
+  }
+
+  generarExcel(tiporeporte : string) {
+    return this.http.post(`${this.url}/generarReporte`,tiporeporte, {
+      responseType: 'blob'
+    });
+    
   }
   
 }

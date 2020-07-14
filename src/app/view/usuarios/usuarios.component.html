@@ -1,1 +1,83 @@
-<h1>Usuarios</h1>
+<div id="main-container">
+
+    <header role="banner">
+        <mat-toolbar color="#FAFAFA" class="example-toolbar">
+
+            <h1 class="app-name"> USUARIOS: </h1>
+            <span class="spacer"></span>
+            <button mat-button fxShow.lt-md="false" fxShow.gt-sm="true" matTooltip="Reporte Html" (click)="genereReporte('html')">
+                <img src="../../../assets/iconos/icono_html.png"   height="35px" alt="x" />
+            </button>
+            <button mat-button fxShow.lt-md="false" fxShow.gt-sm="true" matTooltip="Reporte Excel" (click)="genereReporte('xlsx')">
+                <img src="../../../assets/iconos/icono_excel.png"   height="35px" alt="x" />
+            </button>
+            <button mat-button fxShow.lt-md="false" fxShow.gt-sm="true"   matTooltip="Reporte PDF" (click)="genereReporte('pdf')">
+                <img src="../../../assets/iconos/icono_pdf.png" height="35px" alt="x" />
+            </button>
+        
+        </mat-toolbar>
+    </header>
+    
+    <div>
+        <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Buscar Usuario</mat-label>
+            <input class="toolbar-search" type="text" matInput (keyup)="filter($event.target.value)">
+            <mat-placeholder>Search</mat-placeholder>
+        <mat-icon matSuffix style="font-size: 2.0em">search</mat-icon>
+        </mat-form-field>
+    </div>
+
+
+    <div>
+        <mat-table [dataSource]="dataSource" matSort style="color: white;">
+            <ng-container matColumnDef="nidusuario" >
+                <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: rgb(153, 153, 153);  color: rgb(255, 255, 255);"> ID </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.nidusuario}} </mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="operador">
+                <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:  rgb(153, 153, 153);  color: rgb(255, 255, 255);"> Operador </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.operador.snombre}}</mat-cell>
+            </ng-container>
+    
+            <ng-container matColumnDef="slogin">
+                <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: rgb(153, 153, 153); color: rgb(255, 255, 255);"> Usuario </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.slogin}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="spassword">
+                <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: rgb(153, 153, 153); color: rgb(255, 255, 255);"> Contraseña <a href=""></a> </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.spassword}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="dfechareg">
+                <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: rgb(153, 153, 153); color: rgb(255, 255, 255);"> Fecha Registro </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.dfechareg}}</mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="acciones" >
+                <mat-header-cell *matHeaderCellDef  style="background-color:  rgb(153, 153, 153); text-align:center; color: rgb(255, 255, 255);">Acciones</mat-header-cell>
+                <mat-cell *matCellDef="let row" >
+                    <button mat-icon-button color="primary" (click)="openDialog(row)">
+                        <mat-icon>ballot</mat-icon>
+                    </button>
+                    <button mat-icon-button color="accent" (click)="eliminar(row)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+        
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+         
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" [length]="cantidad" (page)="mostrarMas($event)" style="background-color: darkgrey; color: white;" >
+        </mat-paginator>
+      
+        <button mat-fab color="accent" style="float: right" (click)="openDialog()">
+            <mat-icon>add_circle</mat-icon>
+        </button>
+ 
+    </div>
+       
+</div>

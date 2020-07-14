@@ -1,10 +1,9 @@
 <div id="main-container">
-
  
     <header role="banner">
         <mat-toolbar color="#FAFAFA" class="example-toolbar">
 
-            <h1 class="app-name"> MENUS: </h1>
+            <h1 class="app-name"> SEDES: </h1>
             <span class="spacer"></span>
             <button mat-button fxShow.lt-md="false" fxShow.gt-sm="true" matTooltip="Reporte Html" (click)="genereReporte('html')">
                 <img src="../../../assets/iconos/icono_html.png"   height="35px" alt="x" />
@@ -15,15 +14,13 @@
             <button mat-button fxShow.lt-md="false" fxShow.gt-sm="true"   matTooltip="Reporte PDF" (click)="genereReporte('pdf')">
                 <img src="../../../assets/iconos/icono_pdf.png" height="35px" alt="x" />
             </button>
-    
-
-     
+         
         </mat-toolbar>
     </header>
     
     <div>
         <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Buscar Menú</mat-label>
+            <mat-label>Buscar Sede</mat-label>
             <input class="toolbar-search" type="text" matInput (keyup)="filter($event.target.value)">
             <mat-placeholder>Search</mat-placeholder>
         <mat-icon matSuffix style="font-size: 2.0em">search</mat-icon>
@@ -33,19 +30,29 @@
 
     <div>
         <mat-table [dataSource]="dataSource" matSort style="color: white;">
-            <ng-container matColumnDef="nidmenu" >
+            <ng-container matColumnDef="nidsede" >
                 <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: rgb(153, 153, 153);  color: rgb(255, 255, 255);"> ID </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.nidmenu}} </mat-cell>
+                <mat-cell *matCellDef="let row"> {{row.nidsede}} </mat-cell>
             </ng-container>
         
-            <ng-container matColumnDef="snombremenu">
+            <ng-container matColumnDef="snombre">
                 <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:  rgb(153, 153, 153);  color: rgb(255, 255, 255);"> Nombre </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.snombremenu}}</mat-cell>
+                <mat-cell *matCellDef="let row"> {{row.snombre}}</mat-cell>
             </ng-container>
     
-            <ng-container matColumnDef="modulo">
-                <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: rgb(153, 153, 153); color: rgb(255, 255, 255);"> Modulo </mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.modulo.snombreModulo}}</mat-cell>
+            <ng-container matColumnDef="subigeo">
+                <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: rgb(153, 153, 153); color: rgb(255, 255, 255);"> Ubigeo </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.subigeo}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="sdireccion" >
+                <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: rgb(153, 153, 153);  color: rgb(255, 255, 255);"> Dirección </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.sdireccion}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="dfechareg" >
+                <mat-header-cell *matHeaderCellDef mat-sort-header style="background-color: rgb(153, 153, 153);  color: rgb(255, 255, 255);"> Registro </mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.dfechareg}} </mat-cell>
             </ng-container>
         
             <ng-container matColumnDef="acciones" >
@@ -72,7 +79,7 @@
         </button>
  
     </div>
-    
- 
-    
+       
 </div>
+
+

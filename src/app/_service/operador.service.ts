@@ -11,6 +11,7 @@ export class OperadorService {
 
   operadorCambio = new Subject<Operador[]>();
   mensajeCambio = new Subject<string>();
+  listaCambio = new Subject<Operador[]>();
 
   url: string = `${environment.HOST}/operadores`;
 

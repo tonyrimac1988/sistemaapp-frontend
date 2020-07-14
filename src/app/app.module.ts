@@ -24,6 +24,10 @@ import { MenuComponent } from './view/menu/menu.component';
 import { DashboardComponent } from './view/dashboard/dashboard.component';
 import { AreaComponent } from './view/area/area.component';
 import { RolComponent } from './view/rol/rol.component';
+import { ModuloComponent } from './view/modulo/modulo.component';
+import { OperadorComponent } from './view/operador/operador.component';
+import { SedeComponent } from './view/sede/sede.component';
+import { ParametroComponent } from './view/parametro/parametro.component';
 
 
 
@@ -38,7 +42,11 @@ import { RolComponent } from './view/rol/rol.component';
     MenuComponent,
     DashboardComponent,
     AreaComponent,
-    RolComponent
+    RolComponent,
+    ModuloComponent,
+    OperadorComponent,
+    SedeComponent,
+    ParametroComponent
   ],
   imports: [
     BrowserModule,
